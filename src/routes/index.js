@@ -1,0 +1,20 @@
+const express = require('express');
+const router = express.Router();
+
+// Import all route modules
+const authRoutes = require('./authRoutes');
+const bookRoutes = require('./bookRoutes');
+const tagRoutes = require('./tagRoutes');
+const userRoutes = require('./userRoutes');
+const staffRoutes = require('./staffRoutes');
+const exportRoutes = require('./exportRoutes');
+
+// Apply routes
+router.use('/auth', authRoutes);
+router.use('/books', bookRoutes);
+router.use('/tags', tagRoutes);
+router.use('/users', userRoutes);
+router.use('/staff', staffRoutes);
+router.use('/export', exportRoutes);
+
+module.exports = router;

@@ -1,0 +1,53 @@
+2025-03-16 04:19:50 error: uncaughtException: Cannot find module 'node-cron'
+Require stack:
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\config\scheduler.js
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\index.js
+Error: Cannot find module 'node-cron'
+Require stack:
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\config\scheduler.js
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\index.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1409:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1060:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1065:22)
+    at Function._load (node:internal/modules/cjs/loader:1214:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1495:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\config\scheduler.js:1:14)
+    at Module._compile (node:internal/modules/cjs/loader:1739:14)
+Error: Cannot find module 'node-cron'
+Require stack:
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\config\scheduler.js
+- D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\index.js
+    at Function._resolveFilename (node:internal/modules/cjs/loader:1409:15)
+    at defaultResolveImpl (node:internal/modules/cjs/loader:1060:19)
+    at resolveForCJSWithHooks (node:internal/modules/cjs/loader:1065:22)
+    at Function._load (node:internal/modules/cjs/loader:1214:37)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Module.require (node:internal/modules/cjs/loader:1495:12)
+    at require (node:internal/modules/helpers:135:16)
+    at Object.<anonymous> (D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\config\scheduler.js:1:14)
+    at Module._compile (node:internal/modules/cjs/loader:1739:14)
+2025-03-16 04:42:48 error: uncaughtException: routes is not defined
+ReferenceError: routes is not defined
+    at Object.<anonymous> (D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\index.js:27:17)
+    at Module._compile (node:internal/modules/cjs/loader:1739:14)
+    at Object..js (node:internal/modules/cjs/loader:1904:10)
+    at Module.load (node:internal/modules/cjs/loader:1473:32)
+    at Function._load (node:internal/modules/cjs/loader:1285:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:151:5)
+    at node:internal/main/run_main_module:33:47
+ReferenceError: routes is not defined
+    at Object.<anonymous> (D:\Projects\Maths-Dept\IITD-Math-Dept-Library-Backend-Node\src\index.js:27:17)
+    at Module._compile (node:internal/modules/cjs/loader:1739:14)
+    at Object..js (node:internal/modules/cjs/loader:1904:10)
+    at Module.load (node:internal/modules/cjs/loader:1473:32)
+    at Function._load (node:internal/modules/cjs/loader:1285:12)
+    at TracingChannel.traceSync (node:diagnostics_channel:322:14)
+    at wrapModuleLoad (node:internal/modules/cjs/loader:234:24)
+    at Function.executeUserEntryPoint [as runMain] (node:internal/modules/run_main:151:5)
+    at node:internal/main/run_main_module:33:47
