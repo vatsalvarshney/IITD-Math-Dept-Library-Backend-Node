@@ -3,9 +3,7 @@ const mongoose = require('mongoose');
 const bookSchema = new mongoose.Schema({
   isbn: {
     type: String,
-    required: true,
-    unique: true,
-    maxlength: 13
+    maxlength: 20
   },
   title: {
     type: String,

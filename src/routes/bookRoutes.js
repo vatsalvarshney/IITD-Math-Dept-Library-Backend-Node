@@ -31,7 +31,7 @@ router.post(
   [
     authenticate,
     authorize(ROLES.STAFF),
-    check('isbn').isLength({ min: 13, max: 13 }).withMessage('ISBN must be 13 digits'),
+    check('isbn').isLength({ max: 20 }).withMessage('ISBN too long'),
     check('title').notEmpty().withMessage('Title is required'),
     check('author').notEmpty().withMessage('Author is required'),
     check('total_quantity').isInt({ min: 0 }).withMessage('Total quantity must be a non-negative integer')
@@ -45,7 +45,7 @@ router.put(
   [
     authenticate,
     authorize(ROLES.STAFF),
-    check('isbn').optional().isLength({ min: 13, max: 13 }).withMessage('ISBN must be 13 digits'),
+    check('isbn').optional().isLength({ max: 20 }).withMessage('ISBN too long'),
     check('title').optional().notEmpty().withMessage('Title cannot be empty'),
     check('author').optional().notEmpty().withMessage('Author cannot be empty'),
     check('total_quantity').optional().isInt({ min: 0 }).withMessage('Total quantity must be a non-negative integer')
