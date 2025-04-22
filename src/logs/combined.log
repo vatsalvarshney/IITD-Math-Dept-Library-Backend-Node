@@ -1219,3 +1219,16 @@
 2025-04-11 18:30:43 info: Connected to MongoDB
 2025-04-11 18:30:43 info: All scheduled jobs initialized
 2025-04-11 18:30:43 info: Server running on port 5000
+2025-04-18 16:35:12 info: Connected to MongoDB
+2025-04-18 16:35:12 info: All scheduled jobs initialized
+2025-04-18 16:35:12 info: Server running on port 5000
+2025-04-22 18:34:36 error: Failed to fetch program data for btech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for mtech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for phd: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for msc: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for dual: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for btech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for mtech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for phd: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for msc: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for dual: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in

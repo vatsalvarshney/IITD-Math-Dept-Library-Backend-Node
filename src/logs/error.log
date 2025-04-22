@@ -958,3 +958,13 @@
 2025-03-16 04:32:23 error: Error processing student mt6241102: User validation failed: password: Path `password` is required.
 2025-03-16 04:32:23 error: Error processing student mt6241196: User validation failed: password: Path `password` is required.
 2025-03-16 04:32:23 error: Error processing student mt6241203: User validation failed: password: Path `password` is required.
+2025-04-22 18:34:36 error: Failed to fetch program data for btech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for mtech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for phd: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for msc: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:36 error: Failed to fetch program data for dual: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for btech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for mtech: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for phd: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for msc: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-04-22 18:34:58 error: Failed to fetch program data for dual: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
