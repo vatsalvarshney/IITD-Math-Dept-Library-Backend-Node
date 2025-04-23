@@ -16,8 +16,8 @@ mongoose
 // Sample data
 const staffUser = {
   username: 'staff',
-  email: 'staff@university.edu',
-  password: 'testing123', // This will be hashed by the pre-save hook
+  email: 'hodmaths@iitd.ac.in',
+  password: 'ilovemath1729', // This will be hashed by the pre-save hook
   first_name: 'Staff',
   last_name: '1',
   role: 'staff',

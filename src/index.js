@@ -29,6 +29,14 @@ app.use(cors({
 app.use(express.json());
 app.use(morgan('dev'));
 
+app.use((req, res, next) => {
+  const methodOverride = req.headers['x-http-method-override'];
+  if (req.method === 'POST' && methodOverride) {
+    req.method = methodOverride;
+  }
+  next();
+});
+
 // Use routes
 app.use('/api', routes);
 
@@ -47,7 +55,7 @@ mongoose
     initScheduledJobs();
     
     // Start server
-    app.listen(PORT, () => {
+    app.listen(PORT, '127.0.0.1', () => {
       logger.info(`Server running on port ${PORT}`);
     });
   })
