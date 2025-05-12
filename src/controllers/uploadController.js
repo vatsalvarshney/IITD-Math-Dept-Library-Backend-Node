@@ -47,6 +47,10 @@ const processTagString = (tagString) => {
     .filter(tag => tag.length > 0);
 };
 
+const cleanTagName = (name) => {
+  return name.split(' ').map(word => word.charAt(0).toUpperCase() + word.slice(1)).join(' ');
+};
+
 // Helper function to find or create tags
 const findOrCreateTags = async (tagNames) => {
   const tagIds = [];
@@ -59,7 +63,7 @@ const findOrCreateTags = async (tagNames) => {
     
     if (!tag) {
       // Create new tag if it doesn't exist
-      tag = await Tag.create({ name });
+      tag = await Tag.create({ name: cleanTagName(name) });
     }
     
     tagIds.push(tag._id);
@@ -89,13 +93,16 @@ exports.uploadBooks = async (req, res) => {
     const results = {
       totalProcessed: 0,
       added: 0,
-      skipped: 0,
+      updated: 0,
+      unchanged: 0,
+      combined: 0, // New counter for combined duplicates
       errors: []
     };
     
+    // First pass to parse the CSV and combine duplicates
     const processRows = [];
+    const duplicateMap = new Map(); // Map to track duplicates by title+author+shelf+rack
     
-    // First pass to parse the CSV
     fs.createReadStream(req.file.path)
       .pipe(csv())
       .on('data', (row) => {
@@ -115,9 +122,49 @@ exports.uploadBooks = async (req, res) => {
           return;
         }
         
-        processRows.push(mappedRow);
+        // Create a key for duplicate detection
+        const key = `${mappedRow.title.toLowerCase()}|${mappedRow.author.toLowerCase()}|${mappedRow.shelf}|${mappedRow.rack}`;
+        
+        if (duplicateMap.has(key)) {
+          // Combine with existing entry
+          const existingRow = duplicateMap.get(key);
+          existingRow.total_quantity += mappedRow.total_quantity;
+          
+          // Merge tags if different, avoiding duplicates
+          if (mappedRow.tagString) {
+            const existingTags = existingRow.tagString ? processTagString(existingRow.tagString) : [];
+            const newTags = processTagString(mappedRow.tagString);
+            
+            // Only add tags that don't already exist
+            const uniqueNewTags = newTags.filter(tag => 
+              !existingTags.some(existingTag => 
+                existingTag.toLowerCase() === tag.toLowerCase()
+              )
+            );
+            
+            // If we have new unique tags, add them to existing tags
+            if (uniqueNewTags.length > 0) {
+              existingRow.tagString = existingRow.tagString 
+                ? `${existingRow.tagString}, ${uniqueNewTags.join(', ')}` 
+                : uniqueNewTags.join(', ');
+            }
+          }
+          
+          // Keep ISBN if the existing one is empty
+          if (mappedRow.isbn && !existingRow.isbn) {
+            existingRow.isbn = mappedRow.isbn;
+          }
+          
+          results.combined++;
+        } else {
+          // Add new entry to map
+          duplicateMap.set(key, mappedRow);
+        }
       })
       .on('end', async () => {
+        // Convert map values to array
+        const processRows = Array.from(duplicateMap.values());
+        
         // Delete the uploaded file after processing
         fs.unlinkSync(req.file.path);
         
@@ -130,31 +177,54 @@ exports.uploadBooks = async (req, res) => {
               // Check if the book already exists by title and author (case insensitive)
               const existingBook = await Book.findOne({
                 title: { $regex: new RegExp(`^${row.title.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
-                author: { $regex: new RegExp(`^${row.author.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') }
+                author: { $regex: new RegExp(`^${row.author.replace(/[.*+?^${}()|[\]\\]/g, '\\$&')}$`, 'i') },
+                shelf: row.shelf,
+                rack: row.rack
               });
-              
-              if (existingBook) {
-                results.skipped++;
-                continue;
-              }
               
               // Process tags
               const tagNames = processTagString(row.tagString);
               const tagIds = await findOrCreateTags(tagNames);
               
-              // Create new book
-              await Book.create({
-                isbn: row.isbn,
-                title: row.title,
-                author: row.author,
-                tags: tagIds,
-                total_quantity: row.total_quantity,
-                issued_quantity: 0, // Set default for new books
-                shelf: row.shelf,
-                rack: row.rack
-              });
-              
-              results.added++;
+              if (existingBook) {
+                // Check if any fields need updating
+                let isUpdated = false;
+                
+                if (row.isbn && existingBook.isbn !== row.isbn) {
+                  existingBook.isbn = row.isbn;
+                  isUpdated = true;
+                }
+                
+                // Update tags if they've changed
+                const existingTagIds = existingBook.tags.map(id => id.toString());
+                const newTagIds = tagIds.map(id => id.toString());
+                
+                if (JSON.stringify(existingTagIds.sort()) !== JSON.stringify(newTagIds.sort())) {
+                  existingBook.tags = tagIds;
+                  isUpdated = true;
+                }
+                
+                if (isUpdated) {
+                  await existingBook.save();
+                  results.updated++;
+                } else {
+                  results.unchanged++;
+                }
+              } else {
+                // Create new book
+                await Book.create({
+                  isbn: row.isbn,
+                  title: row.title,
+                  author: row.author,
+                  tags: tagIds,
+                  total_quantity: row.total_quantity,
+                  issued_quantity: 0, // Set default for new books
+                  shelf: row.shelf,
+                  rack: row.rack
+                });
+                
+                results.added++;
+              }
             } catch (error) {
               results.errors.push({
                 row: results.totalProcessed,
@@ -166,7 +236,7 @@ exports.uploadBooks = async (req, res) => {
           
           return res.status(200).json({
             success: true,
-            message: `Processed ${results.totalProcessed} books: ${results.added} added, ${results.skipped} already existed`,
+            message: `Processed ${results.totalProcessed} books: ${results.added} added, ${results.updated} updated, ${results.unchanged} unchanged, ${results.combined} duplicates combined`,
             errors: results.errors.length > 0 ? results.errors : undefined
           });
         } catch (error) {

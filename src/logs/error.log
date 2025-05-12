@@ -968,3 +968,13 @@
 2025-04-22 18:34:58 error: Failed to fetch program data for phd: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
 2025-04-22 18:34:58 error: Failed to fetch program data for msc: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
 2025-04-22 18:34:58 error: Failed to fetch program data for dual: getaddrinfo ENOTFOUND ldapweb.iitd.ac.in
+2025-05-13 00:27:41 error: Failed to fetch program data for btech: Curl failed for https://ldapweb.iitd.ac.in/LDAP/maths/btech.shtml: Command failed: curl -s 'https://ldapweb.iitd.ac.in/LDAP/maths/btech.shtml'
+
+2025-05-13 00:27:41 error: Failed to fetch program data for mtech: Curl failed for https://ldapweb.iitd.ac.in/LDAP/maths/mtech.shtml: Command failed: curl -s 'https://ldapweb.iitd.ac.in/LDAP/maths/mtech.shtml'
+
+2025-05-13 00:27:41 error: Failed to fetch program data for phd: Curl failed for https://ldapweb.iitd.ac.in/LDAP/maths/phd.shtml: Command failed: curl -s 'https://ldapweb.iitd.ac.in/LDAP/maths/phd.shtml'
+
+2025-05-13 00:27:41 error: Failed to fetch program data for msc: Curl failed for https://ldapweb.iitd.ac.in/LDAP/maths/msc.shtml: Command failed: curl -s 'https://ldapweb.iitd.ac.in/LDAP/maths/msc.shtml'
+
+2025-05-13 00:27:41 error: Failed to fetch program data for dual: Curl failed for https://ldapweb.iitd.ac.in/LDAP/maths/dual.shtml: Command failed: curl -s 'https://ldapweb.iitd.ac.in/LDAP/maths/dual.shtml'
+

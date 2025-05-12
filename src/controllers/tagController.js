@@ -7,10 +7,31 @@ const Tag = require('../models/tag');
  */
 exports.getTags = async (req, res) => {
   try {
-    // Get all tags sorted by name, select fields name and _id, change name of _id to id
-    const tags = await Tag.find().sort('name').select('name _id');
+    // Find all tags that have at least one book associated with them
+    const tagsWithBooks = await Tag.aggregate([
+      {
+        $lookup: {
+          from: 'books',
+          localField: '_id',
+          foreignField: 'tags',
+          as: 'books'
+        }
+      },
+      {
+        $match: { 'books.0': { $exists: true } }
+      },
+      {
+        $project: {
+          _id: 1,
+          name: 1
+        }
+      },
+      {
+        $sort: { name: 1 }
+      }
+    ]);
     
-    return res.status(200).json(tags);
+    return res.status(200).json(tagsWithBooks);
   } catch (error) {
     console.error('Error fetching tags:', error);
     return res.status(500).json({ error: 'Server error, failed to fetch tags' });
