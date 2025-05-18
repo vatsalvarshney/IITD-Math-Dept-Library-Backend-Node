@@ -1335,3 +1335,39 @@
 2025-05-13 01:36:36 info: Connected to MongoDB
 2025-05-13 01:36:36 info: All scheduled jobs initialized
 2025-05-13 01:36:36 info: Server running on port 5000
+2025-05-13 02:28:10 info: Connected to MongoDB
+2025-05-13 02:28:10 info: All scheduled jobs initialized
+2025-05-13 02:28:10 info: Server running on port 5000
+2025-05-18 17:53:07 info: Connected to MongoDB
+2025-05-18 17:53:07 info: All scheduled jobs initialized
+2025-05-18 17:53:07 info: Server running on port 5000
+2025-05-18 17:54:44 info: Connected to MongoDB
+2025-05-18 17:54:44 info: All scheduled jobs initialized
+2025-05-18 17:54:44 info: PROD setting:
+2025-05-18 17:54:44 info: Server running on port 5000
+2025-05-18 17:55:32 info: Connected to MongoDB
+2025-05-18 17:55:32 info: All scheduled jobs initialized
+2025-05-18 17:55:32 info: PROD setting: false
+2025-05-18 17:55:32 info: Server running on port 5000
+2025-05-18 17:57:41 info: Connected to MongoDB
+2025-05-18 17:57:41 info: All scheduled jobs initialized
+2025-05-18 17:57:41 info: PROD setting: false
+2025-05-18 17:57:41 info: Server running on port 5000
+2025-05-18 17:58:37 info: Connected to MongoDB
+2025-05-18 17:58:37 info: All scheduled jobs initialized
+2025-05-18 17:58:37 info: PROD setting: false
+2025-05-18 17:58:37 info: Server running on port 5000
+2025-05-18 17:59:37 info: Connected to MongoDB
+2025-05-18 17:59:37 info: All scheduled jobs initialized
+2025-05-18 17:59:37 info: CORS options: {"origin":"https://libmaths.iitd.ac.in","methods":["GET","POST","PUT","DELETE","PATCH"],"credentials":true}
+2025-05-18 17:59:37 info: Server running on port 5000
+2025-05-18 18:00:10 info: Connected to MongoDB
+2025-05-18 18:00:10 info: All scheduled jobs initialized
+2025-05-18 18:00:10 info: CORS options: {}
+2025-05-18 18:00:10 info: Server running on port 5000
+2025-05-18 18:33:17 info: Connected to MongoDB
+2025-05-18 18:33:17 info: All scheduled jobs initialized
+2025-05-18 18:33:17 info: Server running on port 5000
+2025-05-18 18:36:28 info: Connected to MongoDB
+2025-05-18 18:36:28 info: All scheduled jobs initialized
+2025-05-18 18:36:28 info: Server running on port 5000

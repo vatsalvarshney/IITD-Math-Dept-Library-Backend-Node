@@ -19,13 +19,14 @@ if (!fs.existsSync(logDir)) {
   fs.mkdirSync(logDir);
 }
 
-// Middleware
-app.use(cors({
+const corsOptions = process.env.PROD===true ? {
   origin: 'https://libmaths.iitd.ac.in',
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   credentials: true
-}));
-// app.use(cors());
+} : {};
+
+// Middleware
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(morgan('dev'));
 

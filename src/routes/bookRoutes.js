@@ -5,6 +5,9 @@ const { authenticate, authorize } = require('../middleware/authMiddleware');
 const router = express.Router();
 const { ROLES } = require('../config/constants');
 
+// Get available shelves
+router.get('/shelves', bookController.getShelves);
+
 // Book list with search and filtering
 router.get('/', bookController.getBooks);
 

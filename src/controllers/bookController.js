@@ -10,6 +10,7 @@ exports.getBooks = async (req, res) => {
   try {
     const query = req.query.q || '';
     const tagIds = req.query.tags ? req.query.tags.split(',') : [];
+    const shelves = req.query.shelves ? req.query.shelves.split(',') : [];
     const availableOnly = req.query.available === 'true';
     const page = parseInt(req.query.page) || 1;
     const perPage = parseInt(req.query.per_page) || 10;
@@ -33,6 +34,11 @@ exports.getBooks = async (req, res) => {
       // Convert string IDs to ObjectId
       const objectIdTags = tagIds.map(id => new mongoose.Types.ObjectId(id));
       dbQuery.tags = { $in: objectIdTags };
+    }
+    
+    // Shelf filtering
+    if (shelves.length > 0) {
+      dbQuery.shelf = { $in: shelves };
     }
     
     // Available only filter: total_quantity > issued_quantity
@@ -315,6 +321,22 @@ exports.deleteBook = async (req, res) => {
     return res.status(204).send();
   } catch (error) {
     console.error('Error deleting book:', error);
+    return res.status(500).json({ error: 'Internal server error' });
+  }
+};
+
+// GET /books/shelves
+exports.getShelves = async (req, res) => {
+  try {
+    // Get distinct shelf values that are not empty
+    const shelves = await Book.distinct('shelf', { shelf: { $ne: '' } });
+    
+    // Sort shelves numerically
+    const sortedShelves = shelves.filter(Boolean).sort((a, b) => a.localeCompare(b, undefined, { numeric: true, sensitivity: 'base' }));
+    
+    return res.status(200).json(sortedShelves);
+  } catch (error) {
+    console.error('Error fetching shelves:', error);
     return res.status(500).json({ error: 'Internal server error' });
   }
 };
